@@ -51,11 +51,11 @@ PrefabInstance:
     - target: {fileID: -6225309678306389633, guid: 9ae154586075a7e40be38c099c67a54f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: b2a9e3d38494d5b48ad7e36b18b69462, type: 2}
+      objectReference: {fileID: 2100000, guid: 31649eea9117c5140b099428ddca1435, type: 2}
     - target: {fileID: -1707992212735795690, guid: 9ae154586075a7e40be38c099c67a54f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: -909362122209593164, guid: df493f6a2ef7cbd448377b367519cc42, type: 3}
+      objectReference: {fileID: 2100000, guid: 4a1abb1e80a24844caf82fc6c4f2b69c, type: 2}
     - target: {fileID: 919132149155446097, guid: 9ae154586075a7e40be38c099c67a54f, type: 3}
       propertyPath: m_Name
       value: PaperLantern_ON
