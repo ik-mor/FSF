@@ -1,26 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-	public float speed = 5f;
-	public float turnSpeed = 100f;
-	public float move;  //移動
-	public float turn;  //回転
-						// Start is called before the first frame update
-	void Start()
-	{
+	[SerializeField] GameObject _player;
+	[SerializeField] float moveSpeed = 5f;
+	private Gamepad gamepad;
 
-	}
 
-	// Update is called once per frame
+
 	void Update()
 	{
-		move = Input.GetAxis("Vertical");   //上下の入力を取得します。上が1、下が-1
-		turn = Input.GetAxis("Horizontal");  //左右キーの入力を取得します。右が1、左が-1になる。
+		// 現在接続されているGamepadを取得
+		gamepad = Gamepad.current;
+		if (gamepad == null) return;
 
-		transform.Translate(Vector3.forward * move * speed * Time.deltaTime);
-		transform.Rotate(Vector3.up, turn * turnSpeed * Time.deltaTime);
+		// 左スティックの入力値を取得
+		Vector2 stickInputLeft = gamepad.leftStick.ReadValue();
+
+		//移動
+		Vector3 movement = new Vector3(stickInputLeft.x, 0, stickInputLeft.y);
+		transform.Translate(movement * moveSpeed * Time.deltaTime, Space.World);
 	}
 }
