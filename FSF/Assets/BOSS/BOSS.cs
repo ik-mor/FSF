@@ -1,6 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.VersionControl;
+
 using UnityEngine;
 
 public class BOSS : MonoBehaviour
@@ -22,7 +21,6 @@ public class BOSS : MonoBehaviour
 	float m_speed = 2;
 
 	float m_waitTime;
-	float m_castTime;
 
 	Animator m_animator;
 	Health m_health;
@@ -45,7 +43,7 @@ public class BOSS : MonoBehaviour
 
 	private void Start()
 	{
-		m_player = GameObject.FindWithTag("Player").transform;
+		//m_player = GameObject.FindWithTag("Player").transform;
 		m_animator = GetComponent<Animator>();
 		m_health = GetComponent<Health>();
 		m_stackCastNum = 0;
@@ -66,38 +64,6 @@ public class BOSS : MonoBehaviour
 		m_timelineTime += Time.deltaTime;
 
 		if (m_stackCastNum > 0) return;
-
-		// 後半フェーズ移行
-		if (m_timelinePhase == 0)
-		{
-			if ((float)m_health.Value / (float)m_maxHealth * 100.0f <= m_secondHalfHealthPer)
-			{
-				m_timelinePhase = 1;
-				m_timelineId = 0;
-				m_timelineTime = 0;
-			}
-		}
-
-		// ↓↓↓　プレイヤー追跡処理を記入してください　↓↓↓
-
-		// プレイヤーを向く
-		transform.rotation = Quaternion.Lerp(
-			transform.rotation,
-			Quaternion.LookRotation(m_player.position - transform.position),
-			0.2f);
-
-		// プレイヤーに向けて移動
-		bool isMove = false;
-		if ((m_player.position - transform.position).magnitude > 3)
-		{
-			transform.position += transform.forward * m_speed * Time.deltaTime;
-			isMove = true;
-		}
-
-		// アニメーション設定
-		m_animator.SetBool("Move", isMove);
-
-		// ↑↑↑　プレイヤー追跡処理を記入してください　↑↑↑
 	}
 
 	public void OnDeath()
